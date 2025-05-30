@@ -23,5 +23,8 @@
     <tr ng-repeat="v in $ctrl.visits">
         <td class="col-sm-2">{{v.date}}</td>
         <td style="white-space: pre-line">{{v.description}}</td>
+        <td>
+            <a ui-sref="invoice({visitId: v.id})">Invoice </a>
+        </td>
     </tr>
 </table>

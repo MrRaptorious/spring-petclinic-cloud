@@ -108,7 +108,7 @@ data:
               filters:
                 - StripPrefix=2
             - id: invoices-service
-              uri: http://vinvoices-service.spring-petclinic.svc.cluster.local:8080
+              uri: http://invoices-service.spring-petclinic.svc.cluster.local:8080
               predicates:
                 - Path=/api/invoice/**
               filters:
