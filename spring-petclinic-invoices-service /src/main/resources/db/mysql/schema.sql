@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS service_instance_db;
+
+USE service_instance_db;
+
+CREATE TABLE IF NOT EXISTS invoices (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  amount DECIMAL(10,2) NOT NULL,
+  due_date DATE,
+  status VARCHAR(32) DEFAULT 'OPEN',
+  visit_id INT(4) UNSIGNED NOT NULL
+) ENGINE=InnoDB;

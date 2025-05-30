@@ -40,6 +40,17 @@ services:
     ports:
      - 8082:8082
 
+  invoices-service:
+    image: springcommunity/spring-petclinic-cloud-invoices-service
+    container_name: invoices-service
+    mem_limit: 512M
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 9991:9991
+
   vets-service:
     image: springcommunity/spring-petclinic-cloud-vets-service
     container_name: vets-service

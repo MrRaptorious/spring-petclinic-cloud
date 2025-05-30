@@ -54,6 +54,8 @@ data:
 
     customers-service-id: http://customers-service.spring-petclinic.svc.cluster.local:8080
     visits-service-id: http://vists-service.spring-petclinic.svc.cluster.local:8080
+    # TODO HIER KEINE AHNUNG OB DAS STIMMT 
+    invoices-service-id: http://invoices-service.spring-petclinic.svc.cluster.local:8080
 
     spring:
       datasource:
@@ -103,6 +105,12 @@ data:
               uri: http://visits-service.spring-petclinic.svc.cluster.local:8080
               predicates:
                 - Path=/api/visit/**
+              filters:
+                - StripPrefix=2
+            - id: invoices-service
+              uri: http://vinvoices-service.spring-petclinic.svc.cluster.local:8080
+              predicates:
+                - Path=/api/invoice/**
               filters:
                 - StripPrefix=2
             - id: customers-service

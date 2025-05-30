@@ -26,6 +26,13 @@ build:
     buildpacks:
       builder: gcr.io/paketo-buildpacks/builder:base
       trustBuilder: true
+
+  - image: spring-petclinic-invoices-service
+    context:  ./spring-petclinic-invoices-service
+    buildpacks:
+      builder: gcr.io/paketo-buildpacks/builder:base
+      trustBuilder: true
+
   - image: spring-petclinic-vets-service
     context:  ./spring-petclinic-vets-service
     buildpacks:
@@ -61,6 +68,13 @@ deploy:
       namespace: spring-petclinic
       remote: true
       wait: true
+    - name: invoices-db-mysql
+      chartPath: bitnami/mysql #Change to your local ChartRepo if appropriate -> kubeapps/mysql
+      valuesFiles: 
+        - k8s/helm-values/db-values.yaml
+      namespace: spring-petclinic
+      remote: true
+      wait: true
     flags:
       install:
         - "--create-namespace" 
@@ -75,8 +89,10 @@ deploy:
     - k8s/init-services/06-customers-service-service.yaml
     - k8s/init-services/07-vets-service-service.yaml
     - k8s/init-services/08-visits-service-service.yaml
+    - k8s/init-services/09-invoices-service-service.yaml
     - k8s/api-gateway-deployment.yaml
     - k8s/customers-service-deployment.yaml
     - k8s/vets-service-deployment.yaml
     - k8s/visits-service-deployment.yaml
+    - k8s/invoices-service-deployment.yaml
   

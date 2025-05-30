@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  
+    app: invoices-service
+  name: invoices-service
+  namespace: spring-petclinic  
+spec:
+  ports:
+  - name: "http"
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: invoices-service
+status:
+  loadBalancer: {}

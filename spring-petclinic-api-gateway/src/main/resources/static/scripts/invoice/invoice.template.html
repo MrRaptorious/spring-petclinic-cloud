@@ -1,0 +1,23 @@
+<h2>Invoice</h2>
+
+<form ng-submit="$ctrl.submit()">
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" class="form-control" ng-model="$ctrl.invoice.amount" id="amount" step="0.01" />
+    </div>
+    
+    <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input type="date" class="form-control" ng-model="$ctrl.invoice.dueDate" id="dueDate"/>
+    </div>
+    
+    <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" ng-model="$ctrl.invoice.status" id="status"/>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+
+</form>
