@@ -7,11 +7,12 @@ angular.module('invoice')
 
         var getUrl="api/invoice/invoice?visitId=" + ($stateParams.visitId || 0)
         $http.get(getUrl).then(function (resp) {
-            if(resp.data != null){
+            if(resp.data.invoiceData != null){
                 self.invoice = {
-                    ...resp.data,
-                    dueDate: new Date(resp.data.dueDate)
+                    ...resp.data.invoiceData,
+                    dueDate: new Date(resp.data.invoiceData.dueDate)
                 }
+                console.log("Served by Pod:", resp.data.servedByPod)
             }
 
         });

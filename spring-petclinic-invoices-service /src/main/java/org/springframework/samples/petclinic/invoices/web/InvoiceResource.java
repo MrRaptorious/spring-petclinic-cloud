@@ -27,6 +27,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.samples.petclinic.invoices.model.Invoice;
 import org.springframework.samples.petclinic.invoices.model.InvoiceRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,9 +39,20 @@ class InvoiceResource {
 
     private final InvoiceRepository invoiceRepository;
 
+
+    @org.springframework.beans.factory.annotation.Value("${HOSTNAME:unknown}")
+    private String podHostname;
+
+
     @GetMapping("invoice")
-    public Invoice read(@RequestParam("visitId") @Min(1) int visitId) {
-        return invoiceRepository.findByVisitId(visitId);
+    public ResponseEntity<Map<String, Object>> read(@RequestParam("visitId") @Min(1) int visitId) {
+
+    
+        Map<String, Object> response= new HashMap<>();
+        response.put("invoiceData",invoiceRepository.findByVisitId(visitId));    
+        response.put("servedByPod", podHostname);
+        
+        return ResponseEntity.ok(response);
     }
 
     // todo potenziell bloed wegen visits? 
@@ -55,4 +69,5 @@ class InvoiceResource {
         // Rechnung speichern und zurückgeben
         return invoiceRepository.save(invoice);
     }
+
 }
