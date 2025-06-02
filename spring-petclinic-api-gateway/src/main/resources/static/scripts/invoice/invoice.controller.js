@@ -25,7 +25,8 @@ angular.module('invoice')
             };
 
             $http.post(url, data).then(function () {
-                $state.go('ownerDetails', { ownerId: $stateParams.ownerId });
+                $state.go('owners');
             });
         };
     }]);
+    
