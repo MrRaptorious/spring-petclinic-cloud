@@ -55,7 +55,6 @@ class InvoiceResource {
         return ResponseEntity.ok(response);
     }
 
-    // todo potenziell bloed wegen visits? 
     @PostMapping("visits/{visitId}/invoice")
     @ResponseStatus(HttpStatus.CREATED)
     public Invoice create(
