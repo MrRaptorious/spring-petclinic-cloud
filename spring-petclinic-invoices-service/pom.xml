@@ -114,6 +114,12 @@
 			<artifactId>junit-jupiter-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+		  <groupId>de.codecentric</groupId>
+			<artifactId>chaos-monkey-spring-boot</artifactId>
+			<version>3.2.2</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
